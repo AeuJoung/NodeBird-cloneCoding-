@@ -1,3 +1,5 @@
+//template.tsx 일 경우는 레이아웃까지 리마운트 된다.
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
