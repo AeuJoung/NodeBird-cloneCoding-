@@ -1,3 +1,5 @@
+/*파일명에 module 안붙어있으면 글로벌 css 모듈*/
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
