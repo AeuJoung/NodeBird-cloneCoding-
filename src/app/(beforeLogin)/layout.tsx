@@ -10,7 +10,7 @@ export default function Layout({children, modal}:Props) {
         {modal}
     </div>)
 }
-
+    
 
 //주소가 z.com(localhost)일 때는 children->page.tsx, modal->@modal/default.tsx
 //주소가 z.com(localhost)/i/flow/login일 때는 children->i/flow/login/page.tsx, modal->@modla/i/flow/login/page.tsx
