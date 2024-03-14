@@ -1,22 +1,20 @@
-import styles from "@/app/(afterLogin)/_component/trendSection.module.css"
-import Trend from "./Trend"
+"use client";
+
+import style from './trendSection.module.css';
+import Trend from "@/app/(afterLogin)/_component/Trend";
+import {usePathname} from "next/navigation";
 
 export default function TrendSection() {
-    return (
-        <div className={styles.trendBg}>
-            <div className={styles.trend}>
-                <h3>나를 위한 트렌드</h3>
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-                <Trend />
-            </div>
-        </div>
-    )
+  const pathname = usePathname();  // / 부터 ? 전까지 가져옴.
+  if (pathname === '/explore') return null;
+  return (
+    <div className={style.trendBg}>
+      <div className={style.trend}>
+        <h3>나를 위한 트렌드</h3>
+        <Trend />
+        <Trend />
+        <Trend />
+      </div>
+    </div>
+  )
 }

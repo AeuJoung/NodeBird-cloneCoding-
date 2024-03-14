@@ -1,17 +1,22 @@
 import style from './post.module.css';
 import Link from "next/link";
-import dayjs from 'dayjs'; 
-//고정 시점으로부터 몇 분 흘렀는 지 알려주는 기능 가진 라이브러리
-//moment라는 라이브러리도 있음.
+import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
 import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
+import PostArticle from "@/app/(afterLogin)/_component/PostArticle";
+//import {faker} from '@faker-js/faker';
+import PostImages from "@/app/(afterLogin)/_component/PostImages";
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime)
 
-export default function Post() {
+type Props = {
+  noImage?: boolean
+}
+export default function Post({ noImage }: Props) {
   const target = {
+    postId: 1,
     User: {
       id: 'elonmusk',
       nickname: 'Elon Musk',
@@ -19,15 +24,30 @@ export default function Post() {
     },
     content: '클론코딩 라이브로 하니 너무 힘들어요 ㅠㅠ',
     createdAt: new Date(),
-    Images: [],
+    Images: [] as any[],
   }
+  /*
+  if (Math.random() > 0.5 && !noImage) {
+    target.Images.push(
+      {imageId: 1, link: faker.image.urlLoremFlickr()},
+      {imageId: 2, link: faker.image.urlLoremFlickr()},
+      {imageId: 3, link: faker.image.urlLoremFlickr()},
+      {imageId: 4, link: faker.image.urlLoremFlickr()},
+    )
+  }
+  */
+
+
+  //부모가 클라이언트 컴포넌트인데(PostArticle 클라이언트 컴포넌트임),
+  //자식이 서버 컴포넌트라면 아래처럼 자식으로 넣어줘서 가능
+  //임포트 ㄴㄴ. 칠드런이나 프롭스로 넘겨야 함.
   return (
-    <article className={style.post}>
+    <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
           <Link href={`/${target.User.id}`} className={style.postUserImage}>
             <img src={target.User.image} alt={target.User.nickname}/>
-            <div className={style.postShade} />
+            <div className={style.postShade}/>
           </Link>
         </div>
         <div className={style.postBody}>
@@ -43,12 +63,12 @@ export default function Post() {
             <span className={style.postDate}>{dayjs(target.createdAt).fromNow(true)}</span>
           </div>
           <div>{target.content}</div>
-          <div className={style.postImageSection}>
-
+          <div>
+            <PostImages post={target} />
           </div>
-          <ActionButtons />
+          <ActionButtons/>
         </div>
       </div>
-    </article>
+    </PostArticle>
   )
 }
