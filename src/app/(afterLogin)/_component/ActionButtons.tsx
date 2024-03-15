@@ -4,7 +4,11 @@ import cx from 'classnames';
 //클래스를 조건부로 가질 수 있게 해주는 라이브러리
 //클래스 합성.
 
-export default function ActionButtons() {
+type Props = {
+  white? : boolean
+}
+
+export default function ActionButtons({white} : Props) {
   const commented = true;
   const reposted = true;
   const liked = false;
@@ -13,9 +17,11 @@ export default function ActionButtons() {
   const onClickRepost = () => {}
   const onClickHeart = () => {}
 
+  console.log(typeof(style.commented));
+
   return (
     <div className={style.actionButtons}>
-      <div className={cx(style.commentButton, { [style.commented]: commented })}>
+      <div className={cx(style.commentButton, { [style.commented]: commented }, white && style.white)}>
         <button onClick={onClickComment}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -26,7 +32,7 @@ export default function ActionButtons() {
         </button>
         <div className={style.count}>{4 || ''}</div>
       </div>
-      <div className={cx(style.repostButton, reposted && style.reposted)}>
+      <div className={cx(style.repostButton, reposted && style.reposted, white && style.white)}>
         <button onClick={onClickRepost}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -37,7 +43,7 @@ export default function ActionButtons() {
         </button>
         <div className={style.count}>{1 || ''}</div>
       </div>
-      <div className={cx([style.heartButton, liked && style.liked])}>
+      <div className={cx([style.heartButton, liked && style.liked, white && style.white])}>
         <button onClick={onClickHeart}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>

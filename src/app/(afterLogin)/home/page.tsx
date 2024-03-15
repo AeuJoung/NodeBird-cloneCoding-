@@ -15,6 +15,11 @@ export default function Home() : JSX.Element {
           <Post/>
           <Post/>
           <Post/>
+          <Post/>
+          <Post/>
+          <Post/>
+          <Post/>
+          <Post/>
       </TabProvider>
     </main>
   );
