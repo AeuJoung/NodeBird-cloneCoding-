@@ -17,8 +17,8 @@ export default function ActionButtons({white} : Props) {
   const onClickRepost = () => {}
   const onClickHeart = () => {}
 
-  console.log(typeof(style.commented));
 
+  //아래  { [style.commented]: commented } computed property.
   return (
     <div className={style.actionButtons}>
       <div className={cx(style.commentButton, { [style.commented]: commented }, white && style.white)}>
