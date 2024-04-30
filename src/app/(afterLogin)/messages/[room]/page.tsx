@@ -53,7 +53,7 @@ export default function ChatRoom() {
 
             );
           }
-          return ( // 님 메시지면   
+          return ( // 님 메시지면     
             <div
               key={m.messageId}
               className={cx(style.message, style.yourMessage)}>
